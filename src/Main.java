@@ -1,32 +1,28 @@
 import java.time.LocalDate;
 
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         FoodStack storage = new FoodStack();
 
-        FoodItem burger = new FoodItem(
-                "Burger", 250, LocalDate.now().plusDays(7)
-        );
+        storage.push(new FoodItem(
+                "Burger", 250, LocalDate.now().plusDays(7)));
+        storage.push(new FoodItem(
+                "Pizza", 500, LocalDate.now().plusDays(3)));
 
-        FoodItem pizza = new FoodItem(
-                "Pizza", 500, LocalDate.now().plusDays(3)
-        );
+        storage.display();
 
-        storage.push(burger);
-        storage.push(pizza);
+        FoodItem found = storage.search("burger");
+        System.out.println("Search burger: "
+                + (found == null ? "Not found" : found.getName()));
 
-        System.out.println("Size: " + storage.size());
-        System.out.println("Top: " + storage.peek().getName());
+        FoodItem missing = storage.search("Fries");
+        System.out.println("Search Fries: "
+                + (missing == null ? "Not found" : missing.getName()));
 
-        FoodItem removed = storage.pop();
-        System.out.println("Removed: " + removed.getName());
-        System.out.println("Top after removal: "
+        System.out.println("Size after search: " + storage.size());
+        System.out.println("Top after search: "
                 + storage.peek().getName());
-
-        storage.pop();
-
-        System.out.println("Empty: " + storage.isEmpty());
-        System.out.println("Pop from empty: " + storage.pop());
-        System.out.println("Peek from empty: " + storage.peek());
     }
 }

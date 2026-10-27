@@ -45,5 +45,33 @@ public class FoodStack {
         }
 
         return items[top];
+    }    public void display() {
+        if (isEmpty()) {
+            System.out.println("Storage is empty.");
+            return;
+        }
+
+        System.out.println("Storage contents (top to bottom):");
+
+        for (int i = top; i >= 0; i--) {
+            System.out.println(items[i]);
+        }
+    }
+
+    public FoodItem search(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Search name is required.");
+        }
+
+        String searchName = name.trim();
+
+        for (int i = top; i >= 0; i--) {
+            if (items[i].getName().equalsIgnoreCase(searchName)) {
+                return items[i];
+            }
+        }
+
+        return null;
     }
 }
