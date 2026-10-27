@@ -1,6 +1,10 @@
+// Stores up to 8 food trays using LIFO:
+// the last tray added is the first one removed.
 public class FoodStack {
     private static final int CAPACITY = 8;
     private final FoodItem[] items = new FoodItem[CAPACITY];
+
+    // Index of the top tray; -1 indicates an empty stack.
     private int top = -1;
 
     public boolean isEmpty() {
@@ -15,6 +19,8 @@ public class FoodStack {
         return top + 1;
     }
 
+    // Adds a tray to the top in O(1) time.
+    // Returns false if all 8 storage positions are occupied.
     public boolean push(FoodItem item) {
         if (item == null) {
             throw new IllegalArgumentException("Food item is required.");
@@ -28,24 +34,35 @@ public class FoodStack {
         return true;
     }
 
+    // Removes and returns the top tray in O(1) time.
+    // Returns null when storage is empty.
     public FoodItem pop() {
         if (isEmpty()) {
             return null;
         }
 
         FoodItem removed = items[top];
+
+        // Release the reference to the removed tray.
         items[top] = null;
         top--;
+
         return removed;
     }
 
+    // Returns the top tray without removing it. Time complexity: O(1).
+    // Returns null when storage is empty.
     public FoodItem peek() {
         if (isEmpty()) {
             return null;
         }
 
         return items[top];
-    }    public void display() {
+    }
+
+    // Displays all trays from top to bottom without changing the stack.
+    // Time complexity: O(n), where n is the number of stored trays.
+    public void display() {
         if (isEmpty()) {
             System.out.println("Storage is empty.");
             return;
@@ -58,6 +75,9 @@ public class FoodStack {
         }
     }
 
+    // Searches from top to bottom, ignoring letter case.
+    // Returns the first matching tray, or null if none is found.
+    // Best case: O(1). Worst case: O(n).
     public FoodItem search(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException(

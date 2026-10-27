@@ -1,18 +1,22 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+// Represents one food tray and its storage details.
+// Fields cannot be changed after the object is created.
 public class FoodItem {
     private final String name;
     private final double weightGrams;
     private final LocalDate bestBefore;
     private final LocalDateTime storedAt;
 
+    // Validate the supplied details before creating a food item.
     public FoodItem(String name, double weightGrams,
                     LocalDate bestBefore) {
         if (name == null) {
             throw new IllegalArgumentException("Food name is required.");
         }
 
+        // Remove surrounding spaces and accept names regardless of case.
         String cleanName = name.trim();
 
         boolean validName = cleanName.equalsIgnoreCase("Burger")
@@ -26,14 +30,17 @@ public class FoodItem {
                     "Choose Burger, Pizza, Fries, Sandwich or Hotdog.");
         }
 
+        // Reject zero, negative values, NaN and infinity.
         if (!Double.isFinite(weightGrams) || weightGrams <= 0) {
             throw new IllegalArgumentException(
                     "Weight must be a positive finite number.");
         }
 
+        // Use one timestamp for both date validation and storage time.
         LocalDateTime now = LocalDateTime.now();
         LocalDate today = now.toLocalDate();
 
+        // Accept dates from today through 14 days ahead, inclusive.
         if (bestBefore == null
                 || bestBefore.isBefore(today)
                 || bestBefore.isAfter(today.plusDays(14))) {
@@ -47,6 +54,7 @@ public class FoodItem {
         this.storedAt = now;
     }
 
+    // Provide read access while keeping the fields private.
     public String getName() {
         return name;
     }
@@ -63,6 +71,7 @@ public class FoodItem {
         return storedAt;
     }
 
+    // Produce a readable description for console output.
     @Override
     public String toString() {
         return name + " | " + weightGrams + " g"
