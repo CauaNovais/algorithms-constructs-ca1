@@ -24,16 +24,23 @@ Tests were performed manually during development.
 | Invalid date input ("1") | Reject without crashing | Format message; menu continued | Pass |
 | Exit using 0 | End application | Goodbye displayed | Pass |
 | Text instead of weight ("abc") | Reject without crashing | Weight error displayed; menu continued; size 0 | Pass |
-| Zero weight (0 g) | Reject item | Positive finite weight validation message displayed | Pass |
-| Unknown food name ("Sushi") | Reject item | Allowed food names displayed; item not added | Pass |
+ | Unknown food name ("Sushi") | Reject item | Allowed food names displayed; item not added | Pass |
 | Invalid calendar date (2026-11-31) | Reject without crashing | Date format message displayed; menu continued | Pass |
 | Invalid menu choice ("9") | Reject and continue | Valid menu options displayed; menu continue
 d | Pass |
 | Blank search input | Reject and continue | Search name is required; menu continued | Pass |
+| NaN weight | Reject item | Weight validation message displayed; size 0 | Pass |
+| Infinity weight | Reject item | Weight validation message displayed; size 0 | Pass |
+| Blank food name | Reject item | Allowed food names displayed; size 0 | Pass |
+## NetBeans verification on 28 October 2026
+
+Environment: Apache NetBeans 15, JDK 17.0.11.
+
+Added Burger (250 g, best-before 2026-11-04).
+Peek displayed the item without removing it; size remained 1.
+Exit displayed Goodbye and BUILD SUCCESSFUL.
 
 ## Remaining checks
 
-- NaN and infinity as weight.
-- Blank food name.
+
 - Repeat checks after the final team changes.
-- Verify the final project in NetBeans.
