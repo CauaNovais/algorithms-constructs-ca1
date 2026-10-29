@@ -1,5 +1,5 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalDate; //(For the use of dates)
+import java.time.LocalDateTime; //(For the use of dates and time good for log)
 
 // Represents one food tray and its storage details.
 // Fields cannot be changed after the object is created.
@@ -19,12 +19,14 @@ public class FoodItem {
         // Remove surrounding spaces and accept names regardless of case.
         String cleanName = name.trim();
 
+        //Checking the clean name ignoring the case, if they match with the 5 options of food
         boolean validName = cleanName.equalsIgnoreCase("Burger")
                 || cleanName.equalsIgnoreCase("Pizza")
                 || cleanName.equalsIgnoreCase("Fries")
                 || cleanName.equalsIgnoreCase("Sandwich")
                 || cleanName.equalsIgnoreCase("Hotdog");
 
+        //If it does not match
         if (!validName) {
             throw new IllegalArgumentException(
                     "Choose Burger, Pizza, Fries, Sandwich or Hotdog.");
