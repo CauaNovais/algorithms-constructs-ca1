@@ -20,7 +20,7 @@ public interface FoodStorage {
     void display();
     
     //Returns the first item matching the name, or null.
-    FoodItem seach (String name);
+    FoodItem search (String name);
     
     boolean isEmpty();
     

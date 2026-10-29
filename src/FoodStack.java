@@ -1,27 +1,31 @@
 // Stores up to 8 food trays using LIFO:
 // the last tray added is the first one removed.
-public class FoodStack {
+//Implements the FoodStorage interface.
+public class FoodStack implements FoodStorage {
     private static final int CAPACITY = 8;
     private final FoodItem[] items = new FoodItem[CAPACITY];
 
     // Index of the top tray; -1 indicates an empty stack.
     private int top = -1;
 
+    @Override
     public boolean isEmpty() {
         return top == -1;
     }
-
+    
+    @Override
     public boolean isFull() {
         return top == CAPACITY - 1;
     }
 
+    @Override    
     public int size() {
         return top + 1;
     }
 
-    // Adds a tray to the top in O(1) time.
+    // Push operation: adds a tray to the top in O(1) time.
     // Returns false if all 8 storage positions are occupied.
-    public boolean push(FoodItem item) {
+    public boolean add (FoodItem item) {
         if (item == null) {
             throw new IllegalArgumentException("Food item is required.");
         }
@@ -34,9 +38,10 @@ public class FoodStack {
         return true;
     }
 
-    // Removes and returns the top tray in O(1) time.
+    // Pop operation: removes and returns the top tray in O(1) time.
     // Returns null when storage is empty.
-    public FoodItem pop() {
+    @Override
+    public FoodItem remove() {
         if (isEmpty()) {
             return null;
         }
@@ -52,6 +57,7 @@ public class FoodStack {
 
     // Returns the top tray without removing it. Time complexity: O(1).
     // Returns null when storage is empty.
+    @Override
     public FoodItem peek() {
         if (isEmpty()) {
             return null;
@@ -62,6 +68,7 @@ public class FoodStack {
 
     // Displays all trays from top to bottom without changing the stack.
     // Time complexity: O(n), where n is the number of stored trays.
+    @Override
     public void display() {
         if (isEmpty()) {
             System.out.println("Storage is empty.");
@@ -77,7 +84,8 @@ public class FoodStack {
 
     // Searches from top to bottom, ignoring letter case.
     // Returns the first matching tray, or null if none is found.
-    // Best case: O(1). Worst case: O(n).
+    // Best case: O(1). Worst case: O(n).    
+    @Override 
     public FoodItem search(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException(

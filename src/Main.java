@@ -6,14 +6,14 @@ import java.util.Scanner;
 // FoodStack handles storage operations; FoodItem validates food details.
 public class Main {
     public static void main(String[] args) {
-        FoodStack storage = new FoodStack();
+        FoodStorage storage = new FoodStack();
         Scanner scanner = new Scanner(System.in);
 
         boolean running = true; // Create the loop for the menu, while true it keeps running. When choice 0, running becomes false, loop menu finishes
 
         // Keep showing the menu until the user exits or input ends.
         while (running) {
-            System.out.println("\nFood Storage — " + storage.size() + "/8\n"); // Current food storage size out of 8)
+            System.out.println("\nFood Storage: " + storage.size() + "/8\n"); // Current food storage size out of 8)
             System.out.println("1. Add food");
             System.out.println("2. Remove top food");
             System.out.println("3. View top food");
@@ -74,7 +74,7 @@ public class Main {
                         // FoodItem validates the values and records the time.
                         FoodItem item = new FoodItem(name, weight, date);
 
-                        if (storage.push(item)) {
+                        if (storage.add(item)) {
                             System.out.println("Added: " + item);
                         } else {
                             System.out.println("Storage is full.");
@@ -83,7 +83,7 @@ public class Main {
 
                     case "2":
                         // LIFO: remove the most recently added tray.
-                        FoodItem removed = storage.pop();
+                        FoodItem removed = storage.remove();
                         
                         //Checking if the item was removed properly, if it is already empty “Storage is empty” else “removed”
                         System.out.println(removed == null
