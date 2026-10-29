@@ -1,5 +1,5 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+import java.time.LocalDate; // (Importing because it will allows us to use Year Month and day without storing time or timezone, it will suit well for the bestBefore info)
+import java.time.format.DateTimeParseException; // (Handle invalid date for exception handling, follow format YYYY-MM-DD)
 import java.util.Scanner;
 
 // Console interface for managing food storage.
@@ -9,17 +9,17 @@ public class Main {
         FoodStack storage = new FoodStack();
         Scanner scanner = new Scanner(System.in);
 
-        boolean running = true;
+        boolean running = true; // Create the loop for the menu, while true it keeps running. When choice 0, running becomes false, loop menu finishes
 
         // Keep showing the menu until the user exits or input ends.
         while (running) {
-            System.out.println("\nFood Storage — " + storage.size() + "/8");
+            System.out.println("\nFood Storage — " + storage.size() + "/8\n"); // Current food storage size out of 8)
             System.out.println("1. Add food");
             System.out.println("2. Remove top food");
             System.out.println("3. View top food");
             System.out.println("4. Display all food");
             System.out.println("5. Search by name");
-            System.out.println("0. Exit");
+            System.out.println("0. Exit\n");
             System.out.print("Choose: ");
 
             // End gracefully if no more console input is available.
@@ -84,7 +84,8 @@ public class Main {
                     case "2":
                         // LIFO: remove the most recently added tray.
                         FoodItem removed = storage.pop();
-
+                        
+                        //Checking if the item was removed properly, if it is already empty “Storage is empty” else “removed”
                         System.out.println(removed == null
                                 ? "Storage is empty."
                                 : "Removed: " + removed);
@@ -94,6 +95,7 @@ public class Main {
                         // View the top tray without removing it.
                         FoodItem top = storage.peek();
 
+                        //Checking if the top is empty, else show the top
                         System.out.println(top == null
                                 ? "Storage is empty."
                                 : "Top: " + top);
@@ -113,8 +115,10 @@ public class Main {
                             break;
                         }
 
+                        //The function search is found public in FoodStack.java
                         FoodItem found = storage.search(scanner.nextLine());
 
+                        //Checking if the search was match with the item wanted, if null “Not found” else it shows it was found. 
                         System.out.println(found == null
                                 ? "Food not found."
                                 : "Found: " + found);
