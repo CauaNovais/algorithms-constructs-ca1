@@ -1,7 +1,10 @@
-import java.time.LocalDate; // Importing because it will allows us to use Year Month and day without storing time or timezone
-// it will suit well for the bestBefore info)
-import java.time.format.DateTimeParseException; // Handle invalid date for exception handling, follow format YYYY-MM-DD
-import java.util.Scanner; // Reads the user's input from the console.
+// Importing because it will allows us to use Year Month and day without storing time or timezone
+// it will suit well for the bestBefore info
+import java.time.LocalDate;
+// Handle invalid date for exception handling, follow format YYYY-MM-DD
+import java.time.format.DateTimeParseException; 
+// Reads the user's input from the console.
+import java.util.Scanner; 
 
 // Console interface for managing food storage.
 // FoodStack handles storage operations; FoodItem validates food details.

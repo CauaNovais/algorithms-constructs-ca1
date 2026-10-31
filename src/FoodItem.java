@@ -1,5 +1,9 @@
-import java.time.LocalDate; //(For the use of dates)
-import java.time.LocalDateTime; //(For the use of dates and time good for log)
+// For the use of dates
+import java.time.LocalDate; 
+// For the use of dates and time good for log
+import java.time.LocalDateTime; 
+// Formats dates and times into a chosen text pattern.
+import java.time.format.DateTimeFormatter;
 
 // Represents one food tray and its storage details.
 // FoodItem is a child class of FoodProduct.
@@ -10,6 +14,9 @@ public class FoodItem extends FoodProduct {
     private final LocalDate bestBefore;
     private final LocalDateTime storedAt;
 
+    // Display pattern for the storage time: date, hours and minutes.
+    private static final DateTimeFormatter STORED_AT_FORMAT=DateTimeFormatter.ofPattern("yyy-MM-dd HH:mm");
+    
     // Constructor receives the food details when a new item is created.
     public FoodItem(String name, double weightGrams,
                     LocalDate bestBefore) {
@@ -65,10 +72,11 @@ public class FoodItem extends FoodProduct {
 
     // This method controls how the food item appears when printed.
     // It also uses the inherited name and weight from FoodProduct.
+    // The storage time is shown without seconds for readability.
     @Override
     public String toString() {
         return getName() + " | " + getWeightGrams() + " g"
                 + " | Best before: " + bestBefore
-                + " | Stored at: " + storedAt;
+                + " | Stored at: " + storedAt.format(STORED_AT_FORMAT);
     }
 }
