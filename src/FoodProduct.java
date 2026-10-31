@@ -1,6 +1,8 @@
 // This is the parent class for our food products.
 // It contains information that every food product should have.
-public class FoodProduct {
+// It is abstract because only specific food items are created,
+// never a generic food product.
+public abstract class FoodProduct {
 
     // These variables store the basic information about the food.
     // Private means they cannot be accessed directly from other classes.
