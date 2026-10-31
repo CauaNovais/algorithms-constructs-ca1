@@ -29,4 +29,8 @@ public interface FoodStorage {
     
     // Returns the number of items currently stored.
     int size();
+    
+    // Returns the maximum number of items the storage can hold.
+    int getCapacity();
+    
 }

@@ -22,7 +22,13 @@ public class FoodStack implements FoodStorage {
     public int size() {
         return top + 1;
     }
-
+      
+    // Returns the fixed maximum number of trays.
+    @Override
+    public int getCapacity() {
+        return CAPACITY;    
+    }
+    
     // Push operation: adds a tray to the top in O(1) time.
     // Returns false if all 8 storage positions are occupied.
     @Override    

@@ -13,7 +13,9 @@ public class Main {
 
         // Keep showing the menu until the user exits or input ends.
         while (running) {
-            System.out.println("\nFood Storage: " + storage.size() + "/8\n"); // Current food storage size out of 8)
+            
+            //Display the current number of stored trays and the capacity.
+            System.out.println("\nFood Storage: " + storage.size() + "/" + storage.getCapacity() + "\n");
             System.out.println("1. Add food");
             System.out.println("2. Remove top food");
             System.out.println("3. View top food");
