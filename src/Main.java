@@ -1,21 +1,30 @@
-import java.time.LocalDate; // (Importing because it will allows us to use Year Month and day without storing time or timezone, it will suit well for the bestBefore info)
-import java.time.format.DateTimeParseException; // (Handle invalid date for exception handling, follow format YYYY-MM-DD)
-import java.util.Scanner;
+import java.time.LocalDate; // Importing because it will allows us to use Year Month and day without storing time or timezone
+// it will suit well for the bestBefore info)
+import java.time.format.DateTimeParseException; // Handle invalid date for exception handling, follow format YYYY-MM-DD
+import java.util.Scanner; // Reads the user's input from the console.
 
 // Console interface for managing food storage.
 // FoodStack handles storage operations; FoodItem validates food details.
 public class Main {
     public static void main(String[] args) {
+        
+        // Refer to the storage through the interface;
+        // Foodstack provides the stack behaviour.
         FoodStorage storage = new FoodStack();
+        
+        // Reads menu choices and food details typed by the user.
         Scanner scanner = new Scanner(System.in);
 
-        boolean running = true; // Create the loop for the menu, while true it keeps running. When choice 0, running becomes false, loop menu finishes
+        // Create the loop for the menu, while true it keeps running. When choice 0, running becomes false, loop menu finishes.
+        boolean running = true; 
 
         // Keep showing the menu until the user exits or input ends.
         while (running) {
             
-            //Display the current number of stored trays and the capacity.
+            // Display the current number of stored trays and the capacity.
             System.out.println("\nFood Storage: " + storage.size() + "/" + storage.getCapacity() + "\n");
+            
+            // Display the menu options.
             System.out.println("1. Add food");
             System.out.println("2. Remove top food");
             System.out.println("3. View top food");
@@ -41,14 +50,17 @@ public class Main {
                             System.out.println("Storage is full.");
                             break;
                         }
-
+                        
+                        // Ask for the food name; FoodItem validates it later.
                         System.out.print(
                                 "Name (Burger/Pizza/Fries/Sandwich/Hotdog): ");
 
+                        // Stop stafely if the console input has ended.
                         if (!scanner.hasNextLine()) {
                             running = false;
                             break;
                         }
+                        
                         String name = scanner.nextLine();
 
                         System.out.print("Weight in grams: ");
@@ -117,7 +129,7 @@ public class Main {
                             break;
                         }
 
-                        //The function search is found public in FoodStack.java
+                        // The search function is defined in FoodStorage and implemented in FoodStack.
                         FoodItem found = storage.search(scanner.nextLine());
 
                         //Checking if the search was match with the item wanted, if null “Not found” else it shows it was found. 
@@ -131,6 +143,7 @@ public class Main {
                         running = false;
                         break;
 
+                    // Any other input is not a valid menu option.
                     default:
                         System.out.println("Choose 0, 1, 2, 3, 4 or 5.");
                 }
@@ -147,6 +160,7 @@ public class Main {
             }
         }
 
+        // Release the input resource before program ends.
         scanner.close();
         System.out.println("Goodbye!");
     }

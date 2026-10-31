@@ -2,7 +2,11 @@
 // the last tray added is the first one removed.
 // Implements the FoodStorage interface.
 public class FoodStack implements FoodStorage {
+    
+    // Maximum numbeer of trays the storage can hold.
     private static final int CAPACITY = 8;
+    
+    // Holds the trays; index 0 is the bottom of the stack.
     private final FoodItem[] items = new FoodItem[CAPACITY];
 
     // Index of the top tray; -1 indicates an empty stack.
