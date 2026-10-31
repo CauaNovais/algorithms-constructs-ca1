@@ -1,6 +1,6 @@
 // Stores up to 8 food trays using LIFO:
 // the last tray added is the first one removed.
-//Implements the FoodStorage interface.
+// Implements the FoodStorage interface.
 public class FoodStack implements FoodStorage {
     private static final int CAPACITY = 8;
     private final FoodItem[] items = new FoodItem[CAPACITY];
@@ -25,7 +25,8 @@ public class FoodStack implements FoodStorage {
 
     // Push operation: adds a tray to the top in O(1) time.
     // Returns false if all 8 storage positions are occupied.
-    public boolean add (FoodItem item) {
+    @Override    
+    public boolean add(FoodItem item) {
         if (item == null) {
             throw new IllegalArgumentException("Food item is required.");
         }
