@@ -41,18 +41,41 @@ Exit displayed Goodbye and BUILD SUCCESSFUL.
 
 ## Verification after FoodStorage interface changes
 
-Environment: Apache NetBeans 28, JDK 23.02.2.
+Environment: Apache NetBeans 28, JDK 23.0.2
 Test date: 29 October 2026
 
-Added Burger,t hen Pizza; size displayed as 2/8.
-Peek displayed Pizza without removing it/
+Added Burger, then Pizza; size displayed as 2/8.
+Peek displayed Pizza without removing it.
 Search for "burger" found Burger.
 Remove deleted Pizza first, confirming LIFO order was preserved.
 Display showed only Burger remaining.
 Text input "remove" at the menu was rejected; menu continued.
-Eixt displayed Goodbye.
+Exit displayed Goodbye.
 
-## Remaining checks
+## Final verification on 31 October 2026
 
+Environment: Apache NetBeans 28, JDK 23.0.2
+Tests were repeated after the FoodStorage interface, the FoodProduct inheritance,
+the capacity method and the storage time formatting were added.
 
-- Repeat checks after the final team changes.
+| Test | Expected result | Observed result | Status |
+|---|---|---|---|
+| Remove, peek and display on empty storage | Report empty storage | "Storage is empty." displayed; menu continued | Pass |
+| Search on empty storage | No match | "Food not found." displayed | Pass |
+| Add Burger with valid details | Item added and displayed | Details shown with storage time as yyy-MM dd HH:mm | Pass |
+| LIFO removal: add Burger, then Pizza | Remmove Pizza first | Pizza shown; size unchanged | Pass |
+| Display two items | Pizza before Burger | Correct top-to-bottom order | Pass|
+| Search "burger" | Find Burger ignoring case | Burger found | Pass|
+| Negative, NaN and infinite weight | Reject item | Weight validation message displayed | Pass |
+| Text instead of weight ("abc") | Reject without crashing | Weight error displayed; menu continued | Pass |
+| Unknown food name ("Sushi") | Reject item | Allow food names displayed | Pass |
+| Blank food name | Reject item | "Food name is required." displayed (validate by FoodProduct) | Pass |
+| Best-before +15 days and past date | Reject item | Date validation message displayed | Pass |
+| Best-before +14 days (2026-11-14) Accept | Item added | Pass |
+| Invalid calendar date and text date | Reject without crashing | Date format message displayed | Pass |
+| Invalid menu option | Reject and continue | Invalid option message displayed; menu continued | Pass |
+| Blank search input | Reject and continue | "Search name is reqauired." displayed | Pass |
+| Invalid inputs | Storage unchanged | Item count did not increase | Pass |
+| Fill all 8 positions, then add again | Reject ninth item | "Storage is full." displayed before asking for details | Pass|
+| Add after removing from full storage | Accept new item | Item added; size returned 8/8 | Pass |
+| Exist using 0 |End application | "Goodbye!" displayed | Pass |

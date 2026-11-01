@@ -56,7 +56,7 @@ public class Main {
                         
                         // Ask for the food name; FoodItem validates it later.
                         System.out.print(
-                                "Name (Burger/Pizza/Fries/Sandwich/Hotdog): ");
+                                "Food name (Burger, Pizza, Fries, Sandwich or Hotdog): ");
 
                         // Stop stafely if the console input has ended.
                         if (!scanner.hasNextLine()) {
@@ -148,7 +148,7 @@ public class Main {
 
                     // Any other input is not a valid menu option.
                     default:
-                        System.out.println("Choose 0, 1, 2, 3, 4 or 5.");
+                        System.out.println("Invalid option. Choose 0, 1, 2, 3, 4 or 5.");
                 }
             } catch (NumberFormatException e) {
                 // The weight input could not be converted to a number.
